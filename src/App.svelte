@@ -2,6 +2,7 @@
 	import Logo from './components/Header.svelte';
 	import Footer from './components/Footer.svelte';
 	import Tabs from './shared/Tabs.svelte';
+	import CreatePollForm from './components/CreatePollForm.svelte';
 
 	// tabs
 	let items = ['Current Polls', 'Add New Poll'];
@@ -9,12 +10,17 @@
 	const tabChange = (e) => {
 		activeItem = e.detail;
 		console.log(activeItem);
-	}
+	};
 </script>
 
 <Logo />
 <main>
-	<Tabs {items} {activeItem} on:tabChange={tabChange}/>
+	<Tabs {items} {activeItem} on:tabChange={tabChange} />
+	{#if activeItem === 'Current Polls'}
+		<p>Current Polls</p>
+	{:else if activeItem === 'Add New Poll'}
+		<CreatePollForm />
+	{/if}
 </main>
 <Footer />
 
